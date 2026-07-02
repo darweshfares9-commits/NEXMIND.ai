@@ -1,16 +1,15 @@
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 
 /**
- * NexMind AI gateway — routes all model calls through Lovable AI Gateway.
+ * NexMind AI gateway — routes all model calls through OpenRouter.
  * Server-only. Never import from browser code.
  */
-export function createNexMindAi(lovableApiKey: string) {
+export function createNexMindAi(openRouterApiKey: string) {
   return createOpenAICompatible({
-    name: "lovable",
-    baseURL: "https://ai.gateway.lovable.dev/v1",
+    name: "openrouter",
+    baseURL: "https://openrouter.ai/api/v1",
     headers: {
-      "Lovable-API-Key": lovableApiKey,
-      "X-Lovable-AIG-SDK": "vercel-ai-sdk",
+      "Authorization": `Bearer ${openRouterApiKey}`,
     },
   });
 }

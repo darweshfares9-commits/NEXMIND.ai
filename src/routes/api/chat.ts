@@ -37,8 +37,8 @@ export const Route = createFileRoute("/api/chat")({
         if (!Array.isArray(messages)) {
           return new Response("messages required", { status: 400 });
         }
-        const key = process.env.LOVABLE_API_KEY;
-        if (!key) return new Response("Missing LOVABLE_API_KEY", { status: 500 });
+        const key = process.env.VITE_OPENROUTER_API_KEY;
+        if (!key) return new Response("Missing OPENROUTER_API_KEY", { status: 500 });
 
         const tool = toolSlug ? findTool(toolSlug) : undefined;
         const IDENTITY = [
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/api/chat")({
 
         const ai = createNexMindAi(key);
         const result = streamText({
-          model: ai("google/gemini-3-flash-preview"),
+          model: ai("google/gemini-2.0-flash-exp"),
           system,
           messages: await convertToModelMessages(messages as UIMessage[]),
         });
