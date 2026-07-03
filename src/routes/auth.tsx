@@ -1,7 +1,6 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
 import { toast } from "sonner";
 import logo from "@/assets/nexmind-logo.png";
 
@@ -38,7 +37,6 @@ function AuthPage() {
         });
         if (error) throw error;
         if (!data.session) {
-          // Auto-confirm is on; try signing in immediately as a safety net.
           const { error: e2 } = await supabase.auth.signInWithPassword({ email, password });
           if (e2) throw e2;
         }
@@ -57,12 +55,13 @@ function AuthPage() {
   async function signInWithGoogle() {
     setLoading(true);
     try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
-        extraParams: { prompt: "select_account" },
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: window.location.origin + "/hub",
+        },
       });
-      if (result.error) throw result.error;
-      if (!result.redirected) navigate({ to: "/hub" });
+      if (error) throw error;
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Google sign-in failed");
     } finally {
