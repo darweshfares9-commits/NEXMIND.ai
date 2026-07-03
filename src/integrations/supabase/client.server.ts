@@ -12,7 +12,12 @@ function createSupabaseFetch(supabaseKey: string): typeof fetch {
     }
 
     headers.set('apikey', supabaseKey);
-    headers.set('Authorization', `Bearer ${supabaseKey}`);
+    
+    // مهم: لو فيه Authorization معينة (زي token اليوزر)، متمسحهاش!
+    if (!headers.has('Authorization')) {
+      headers.set('Authorization', `Bearer ${supabaseKey}`);
+    }
+    
     return fetch(input, { ...init, headers });
   };
 }
