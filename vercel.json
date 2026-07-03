@@ -1,5 +1,7 @@
 {
-    "buildCommand": "bun run build",
-    "installCommand": "bun install --frozen-lockfile"
-  }
-  
+  "buildCommand": "bun run build",
+  "installCommand": "bun install --frozen-lockfile",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/__server/$1" }
+  ]
+}
