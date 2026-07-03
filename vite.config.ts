@@ -1,10 +1,23 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import { tanstackStart } from "@tanstack/start/vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import path from "path";
 
 export default defineConfig({
-  tanstackStart: {
-    server: { 
-      entry: "server",
-      preset: "vercel"
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
+  plugins: [
+    tailwindcss(),
+    react(),
+    tanstackStart({
+      server: {
+        entry: "server",
+        preset: "vercel",
+      },
+    }),
+  ],
 });
