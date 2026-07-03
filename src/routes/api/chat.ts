@@ -57,7 +57,7 @@ export const Route = createFileRoute("/api/chat")({
 
         const ai = createNexMindAi(key);
         const result = streamText({
-          model: ai("google/gemini-2.0-flash-exp"),
+          model: ai("google/gemini-2.0-flash-001"),
           system,
           messages: await convertToModelMessages(messages as UIMessage[]),
         });
