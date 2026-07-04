@@ -214,17 +214,17 @@ function ToolPage() {
   }
 
   async function handleShare() {
-    if (!conversationId) {
-      const cid = await ensureConversation();
+    let cid = conversationId;
+    if (!cid) {
+      cid = await ensureConversation();
       if (!cid) { toast.error("لا توجد محادثة لمشاركتها"); return; }
       setConversationId(cid);
     }
-    const cid = conversationId;
     const token = crypto.randomUUID().replace(/-/g, "").slice(0, 16);
     const { error } = await supabase
       .from("shared_conversations")
       .insert({ token, conversation_id: cid });
-    if (error) { toast.error("فشل إنشاء الرابط"); return; }
+    if (error) { toast.error("فشل: " + error.message); return; }
     const url = `${window.location.origin}/share/${token}`;
     await navigator.clipboard.writeText(url);
     toast.success("تم نسخ رابط المشاركة!");
