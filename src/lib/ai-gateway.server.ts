@@ -1,3 +1,4 @@
+// Google AI Studio Gateway v2
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 
 export function createNexMindAi(googleApiKey: string) {
