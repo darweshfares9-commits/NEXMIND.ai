@@ -1,15 +1,11 @@
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 
-/**
- * NexMind AI gateway — routes all model calls through OpenRouter.
- * Server-only. Never import from browser code.
- */
-export function createNexMindAi(openRouterApiKey: string) {
+export function createNexMindAi(googleApiKey: string) {
   return createOpenAICompatible({
-    name: "openrouter",
-    baseURL: "https://openrouter.ai/api/v1",
+    name: "google-ai",
+    baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
     headers: {
-      "Authorization": `Bearer ${openRouterApiKey}`,
+      "Authorization": `Bearer ${googleApiKey}`,
     },
   });
 }
