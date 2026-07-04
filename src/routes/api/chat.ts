@@ -37,8 +37,8 @@ export const Route = createFileRoute("/api/chat")({
         if (!Array.isArray(messages)) {
           return new Response("messages required", { status: 400 });
         }
-        const key = process.env.VITE_GOOGLE_AI_KEY;
-           if (!key) return new Response("Missing GOOGLE_AI_KEY", { status: 500 });
+        const key = process.env.VITE_GROQ_API_KEY;
+            if (!key) return new Response("Missing GROQ_API_KEY", { status: 500 });
 
         const tool = toolSlug ? findTool(toolSlug) : undefined;
         const IDENTITY = [
@@ -57,7 +57,7 @@ export const Route = createFileRoute("/api/chat")({
 
         const ai = createNexMindAi(key);
         const result = streamText({
-          model: ai("gemini-1.5-flash"),
+          model: ai("llama-3.1-70b-versatile"),
           system,
           messages: await convertToModelMessages(messages as UIMessage[]),
         });

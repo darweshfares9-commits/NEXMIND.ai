@@ -1,13 +1,11 @@
-// Google AI Studio Gateway v2
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 
-export function createNexMindAi(googleApiKey: string) {
+export function createNexMindAi(groqApiKey: string) {
   return createOpenAICompatible({
-    name: "google-ai",
-    baseURL: "https://generativelanguage.googleapis.com/v1beta/openai/",
+    name: "groq",
+    baseURL: "https://api.groq.com/openai/v1",
     headers: {
-      "Authorization": `Bearer ${googleApiKey}`,
+      "Authorization": `Bearer ${groqApiKey}`,
     },
   });
 }
-
