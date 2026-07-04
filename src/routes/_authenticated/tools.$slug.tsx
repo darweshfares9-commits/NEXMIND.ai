@@ -70,8 +70,9 @@ function ToolPage() {
     setUsage({ used: log?.messages_count ?? 0, limit, tier });
   }
 
-  const { messages, sendMessage, status } = useChat({
-    id: `tool-${slug}`,
+  const chatId = conversationId || `tool-${slug}`;
+const { messages, sendMessage, status } = useChat({
+  id: chatId,
     transport: new DefaultChatTransport({
       api: "/api/chat",
       prepareSendMessagesRequest: ({ messages }) => ({
