@@ -24,11 +24,10 @@ function SettingsPage() {
 
         <section className="glass-cell rounded-xl p-6">
           <h2 className="text-sm tracking-[0.3em] text-glow-cyan mb-2" style={{ color: "var(--cyan)" }}>
-            AI ENGINE
+            ACCOUNT
           </h2>
           <p className="text-sm text-muted-foreground">
-            NexMind runs on the built-in Lovable AI Gateway by default (Gemini, GPT, and more — no keys required).
-            Bring-your-own-key support for OpenAI / Anthropic / others can be added on request.
+            Signed in as <span className="text-foreground">{email}</span>
           </p>
         </section>
       </main>
