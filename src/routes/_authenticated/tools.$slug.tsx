@@ -303,18 +303,14 @@ function ToolPage() {
             >
               <Volume2 size={14} />
             </button>
-            {messages.length > 0 && (
-              <>
-                <button onClick={handleExport} title="Export PDF" className="w-8 h-8 rounded-md flex items-center justify-center"
-                  style={{ border: "1px solid oklch(0.82 0.19 200 / 0.2)" }}>
-                  <Download size={14} />
-                </button>
-                <button onClick={handleShare} title="Share" className="w-8 h-8 rounded-md flex items-center justify-center"
-                  style={{ border: "1px solid oklch(0.82 0.19 200 / 0.2)" }}>
-                  <Share2 size={14} />
-                </button>
-              </>
-            )}
+            <button onClick={handleExport} title="Export PDF" disabled={messages.length === 0} className="w-8 h-8 rounded-md flex items-center justify-center transition disabled:opacity-30"
+  style={{ border: "1px solid oklch(0.82 0.19 200 / 0.2)" }}>
+  <Download size={14} />
+</button>
+<button onClick={handleShare} title="Share" disabled={messages.length === 0} className="w-8 h-8 rounded-md flex items-center justify-center transition disabled:opacity-30"
+  style={{ border: "1px solid oklch(0.82 0.19 200 / 0.2)" }}>
+  <Share2 size={14} />
+</button>
           </div>
         </header>
 
