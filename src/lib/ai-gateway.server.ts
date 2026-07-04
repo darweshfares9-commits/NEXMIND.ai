@@ -9,3 +9,4 @@ export function createNexMindAi(googleApiKey: string) {
     },
   });
 }
+
