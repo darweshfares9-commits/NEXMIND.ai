@@ -57,7 +57,7 @@ export const Route = createFileRoute("/api/chat")({
 
         const ai = createNexMindAi(key);
         const result = streamText({
-          model: ai("llama-3.1-70b-versatile"),
+          model: ai("llama-3.3-70b-versatile"),
           system,
           messages: await convertToModelMessages(messages as UIMessage[]),
         });
